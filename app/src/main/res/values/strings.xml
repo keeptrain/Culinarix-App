@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Culinarix</string>
+
+
+    <!-- Login Page -->
+    <string name="welcome">Welcome</string>
+    <string name="pls_signin">Please sign in to continue.</string>
+
+    <string name="email">Email</string>
+    <string name="emailError">Invalid email address format.</string>
+
+    <string name="password">Password</string>
+    <string name="passwordError">Password cannot be less than 8 characters!</string>
+    <string name="login_btn">Login</string>
+
+    <string name="dontHaveAcc">You don\'t have account? Signup</string>
+
+    <!-- Signup Page -->
+    <string name="register">Register</string>
+    <string name="pls_signup">Please sign up to login.</string>
+    <string name="age">Age</string>
+    <string name="domicile">Domicile</string>
+    <string name="signup_btn">Sign up</string>
+
+
+
+</resources>
