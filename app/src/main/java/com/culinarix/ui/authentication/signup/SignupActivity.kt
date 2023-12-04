@@ -1,9 +1,7 @@
 package com.culinarix.ui.authentication.signup
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.SpannableString
-import com.culinarix.R
+import androidx.appcompat.app.AppCompatActivity
 import com.culinarix.databinding.ActivitySignupBinding
 
 class SignupActivity : AppCompatActivity() {
@@ -17,11 +15,15 @@ class SignupActivity : AppCompatActivity() {
 
         setupAction()
 
+
+
     }
+
 
 
     private fun setupAction() {
         actionBar()
+        validateLayout()
     }
 
     private fun actionBar () {
@@ -33,9 +35,21 @@ class SignupActivity : AppCompatActivity() {
 
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        finish()
-        return true
+    private fun validateLayout() {
+        val emailLayout = binding.emailEdtLayout
+        binding.emailEdt.setEmailLayout(emailLayout)
+
+        val passwordLayout = binding.passwordEdtLayout
+        binding.passwordEdt.setPasswordLayout(passwordLayout)
+
+        val domiLayout = binding.domicileEdtLayout
+        binding.domicileEdt.setDomicilieLayout(domiLayout)
+
     }
+
+
+
+
+
 
 }

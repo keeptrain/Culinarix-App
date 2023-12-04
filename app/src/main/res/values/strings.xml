@@ -6,6 +6,8 @@
     <string name="welcome">Welcome</string>
     <string name="pls_signin">Please sign in to continue.</string>
 
+    <string name="name">Name</string>
+
     <string name="email">Email</string>
     <string name="emailError">Invalid email address format.</string>
 
@@ -20,6 +22,7 @@
     <string name="pls_signup">Please sign up to login.</string>
     <string name="age">Age</string>
     <string name="domicile">Domicile</string>
+    <string name="domicilieError">Invalid domicilie.</string>
     <string name="signup_btn">Sign up</string>
 
 
