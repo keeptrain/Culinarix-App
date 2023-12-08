@@ -25,6 +25,10 @@
     <string name="domicilieError">Invalid domicilie.</string>
     <string name="signup_btn">Sign up</string>
 
+    <!-- Detail Page -->
+    <string name="tempatmakan">Tempat Makan</string>
+    <string name="alamat">Alamat</string>
+
 
 
 </resources>
