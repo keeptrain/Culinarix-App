@@ -15,25 +15,15 @@ class SignupActivity : AppCompatActivity() {
 
         setupAction()
 
-
-
     }
 
 
 
     private fun setupAction() {
-        actionBar()
         validateLayout()
     }
 
-    private fun actionBar () {
-        setSupportActionBar(binding.actionBar)
-        with (supportActionBar) {
-            this?.setDisplayHomeAsUpEnabled(true)
-            title = ""
-        }
 
-    }
 
     private fun validateLayout() {
         val emailLayout = binding.emailEdtLayout

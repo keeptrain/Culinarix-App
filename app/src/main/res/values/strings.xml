@@ -16,6 +16,7 @@
     <string name="login_btn">Login</string>
 
     <string name="dontHaveAcc">You don\'t have account? Signup</string>
+    <string name="haveAcc">You have account?</string>
 
     <!-- Signup Page -->
     <string name="register">Register</string>
@@ -23,8 +24,9 @@
     <string name="age">Age</string>
     <string name="domicile">Domicile</string>
     <string name="domicilieError">Invalid domicilie.</string>
-    <string name="signup_btn">Sign up</string>
-
+    <string name="signup">Sign up</string>
+    <string name="sigin">Sign In</string>
+    <string name="regis">Register</string>
 
 
 </resources>

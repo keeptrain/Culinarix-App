@@ -6,33 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".ui.authentication.signup.SignupActivity">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/actionBar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </com.google.android.material.appbar.MaterialToolbar>
 
     <TextView
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="100dp"
         android:text="@string/register"
-        android:textSize="26sp"
+        android:textSize="40sp"
+        android:fontFamily="@font/interblack"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/actionBar"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/please"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pls_signup"
+        android:fontFamily="@font/intermedium"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="@id/register"
         app:layout_constraintTop_toBottomOf="@+id/register"/>
 
@@ -45,6 +39,12 @@
         android:layout_marginTop="16dp"
         android:hint="@string/name"
         app:hintAnimationEnabled="true"
+        app:endIconMode="clear_text"
+        app:boxCornerRadiusBottomEnd="2dp"
+        app:boxCornerRadiusBottomStart="2dp"
+        app:boxCornerRadiusTopStart="2dp"
+        app:boxCornerRadiusTopEnd="2dp"
+        app:startIconDrawable="@drawable/ic_person"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/please">
@@ -54,6 +54,8 @@
             android:id="@+id/nameEdt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/intermedium"
+            android:textSize="16sp"
             android:inputType="textPersonName"
             tools:ignore="SpeakableTextPresentCheck"/>
     </com.google.android.material.textfield.TextInputLayout>
@@ -66,18 +68,26 @@
         android:layout_marginEnd="32dp"
         android:layout_marginTop="16dp"
         android:hint="@string/email"
+        app:startIconDrawable="@drawable/ic_email"
         app:hintAnimationEnabled="true"
+        app:endIconMode="clear_text"
+        app:boxCornerRadiusBottomEnd="2dp"
+        app:boxCornerRadiusBottomStart="2dp"
+        app:boxCornerRadiusTopStart="2dp"
+        app:boxCornerRadiusTopEnd="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nameEdtLayout">
 
         <com.culinarix.ui.utils.customview.Email
             android:id="@+id/emailEdt"
+            style="@style/ThemeOverlay.Material3.TextInputEditText.FilledBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:textSize="16sp"
+            android:fontFamily="@font/intermedium"
             android:inputType="textEmailAddress"
-            style="@style/ThemeOverlay.Material3.TextInputEditText.FilledBox"
             tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,7 +99,13 @@
         android:layout_marginEnd="32dp"
         android:layout_marginTop="16dp"
         android:hint="@string/password"
+        app:startIconDrawable="@drawable/ic_lock"
         app:hintAnimationEnabled="true"
+        app:endIconMode="password_toggle"
+        app:boxCornerRadiusBottomEnd="2dp"
+        app:boxCornerRadiusBottomStart="2dp"
+        app:boxCornerRadiusTopStart="2dp"
+        app:boxCornerRadiusTopEnd="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/emailEdtLayout">
@@ -99,6 +115,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="12"
+            android:textSize="16sp"
+            android:fontFamily="@font/intermedium"
             android:inputType="textPassword"
             tools:ignore="SpeakableTextPresentCheck"/>
 
@@ -106,20 +124,28 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ageEdtLayout"
-        android:layout_width="0dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="2dp"
         android:layout_marginTop="16dp"
         android:hint="@string/age"
+        app:startIconDrawable="@drawable/ic_umur"
         app:hintAnimationEnabled="true"
+        app:endIconMode="clear_text"
+        app:boxCornerRadiusBottomEnd="2dp"
+        app:boxCornerRadiusBottomStart="2dp"
+        app:boxCornerRadiusTopStart="2dp"
+        app:boxCornerRadiusTopEnd="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordEdtLayout">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/ageEdt"
-            android:layout_width="80dp"
+            android:layout_width="match_parent"
+            android:textSize="16sp"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/intermedium"
             android:inputType="number"
             android:maxLength="2" />
 
@@ -129,10 +155,15 @@
         android:id="@+id/domicileEdtLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="18dp"
         android:layout_marginEnd="32dp"
         android:hint="@string/domicile"
         app:hintAnimationEnabled="true"
+        app:startIconDrawable="@drawable/ic_domicile"
+        app:boxCornerRadiusBottomEnd="2dp"
+        app:boxCornerRadiusBottomStart="2dp"
+        app:boxCornerRadiusTopStart="2dp"
+        app:boxCornerRadiusTopEnd="2dp"
         app:layout_constraintStart_toEndOf="@id/ageEdtLayout"
         app:layout_constraintTop_toTopOf="@id/ageEdtLayout"
         app:layout_constraintEnd_toEndOf="parent">
@@ -141,9 +172,11 @@
             android:id="@+id/domicileEdt"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:padding="10dp"
+            android:textSize="16sp"
+            android:fontFamily="@font/intermedium"
+            android:imeOptions="actionDone"
             android:inputType="textAutoComplete"
-            android:imeOptions="actionDone"/>
+            android:padding="10dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -154,9 +187,9 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/signup_btn"
+        android:text="@string/regis"
         android:backgroundTint="@color/primaryColor"
-        app:cornerRadius="8dp"
+        app:cornerRadius="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ageEdtLayout"/>
