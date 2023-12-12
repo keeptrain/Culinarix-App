@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.culinarix.data.CulinarixRepository
 import com.culinarix.data.api.response.RegisterResponse
 import com.culinarix.ui.utils.ResultState
-import com.culinarix.ui.utils.customview.Domicile
 import kotlinx.coroutines.launch
 
 class SignupViewModel (private val repository: CulinarixRepository) : ViewModel(){

@@ -86,7 +86,6 @@ class LoginActivity : AppCompatActivity() {
                         buttonLayout(true)
                         showAlertDialog(message)
                     }
-                    else -> {}
                 }
             }
         }

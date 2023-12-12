@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import com.culinarix.R
 import com.culinarix.databinding.ActivityMainBinding
 import com.culinarix.ui.ViewModelFactory
 import com.culinarix.ui.authentication.login.LoginActivity

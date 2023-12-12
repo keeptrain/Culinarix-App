@@ -1,16 +1,13 @@
 package com.culinarix.ui.authentication.signup
 
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.View
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.culinarix.R
 import com.culinarix.databinding.ActivitySignupBinding
 import com.culinarix.ui.ViewModelFactory
-import com.culinarix.ui.authentication.login.LoginViewModel
 import com.culinarix.ui.utils.ResultState
 
 class SignupActivity : AppCompatActivity() {
