@@ -12,6 +12,7 @@ import com.google.android.material.textfield.TextInputLayout
 class Email : TextInputEditText {
 
     private var emailLayout: TextInputLayout? = null
+    private var isValid: Boolean = false
 
     constructor(context: Context) : super(context) {
         init()
@@ -26,34 +27,29 @@ class Email : TextInputEditText {
     }
 
     private fun init() {
-
         addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 if (s != null) {
-                    if (!Patterns.EMAIL_ADDRESS.matcher(s.toString()).matches()) {
+                    isValid = Patterns.EMAIL_ADDRESS.matcher(s).matches()
+                    if (!isValid) {
                         emailLayout?.error = context.getString(R.string.emailError)
-
                     } else {
                         emailLayout?.error = null
                     }
                 }
             }
 
-            override fun afterTextChanged(p0: Editable?) {
-
-            }
-
+            override fun afterTextChanged(p0: Editable?) {}
         })
+    }
 
+    fun isValid(): Boolean {
+        return isValid
     }
 
     fun setEmailLayout(layout: TextInputLayout) {
         emailLayout = layout
     }
-
-
 }

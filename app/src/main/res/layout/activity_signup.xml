@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.authentication.signup.SignupActivity">
 
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/register"
@@ -49,7 +58,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/please">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.culinarix.ui.utils.customview.Name
             style="@style/ThemeOverlay.Material3.TextInputEditText.FilledBox"
             android:id="@+id/nameEdt"
             android:layout_width="match_parent"
@@ -124,10 +133,10 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/ageEdtLayout"
-        android:layout_width="120dp"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginEnd="3dp"
         android:layout_marginTop="16dp"
         android:hint="@string/age"
         app:startIconDrawable="@drawable/ic_umur"
@@ -140,7 +149,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/passwordEdtLayout">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.culinarix.ui.utils.customview.Age
             android:id="@+id/ageEdt"
             android:layout_width="match_parent"
             android:textSize="16sp"
@@ -171,7 +180,7 @@
         <com.culinarix.ui.utils.customview.Domicile
             android:id="@+id/domicileEdt"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="58dp"
             android:textSize="16sp"
             android:fontFamily="@font/intermedium"
             android:imeOptions="actionDone"
@@ -187,7 +196,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="32dp"
-        android:text="@string/regis"
+        android:text="@string/signup_btn"
         android:backgroundTint="@color/primaryColor"
         app:cornerRadius="2dp"
         app:layout_constraintEnd_toEndOf="parent"

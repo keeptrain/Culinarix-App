@@ -12,9 +12,11 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import com.culinarix.R
+import com.culinarix.data.model.UserModel
 import com.culinarix.databinding.ActivityLoginBinding
 import com.culinarix.ui.ViewModelFactory
 import com.culinarix.ui.authentication.signup.SignupActivity
+import com.culinarix.ui.main.MainActivity
 import com.culinarix.ui.utils.ResultState
 
 class LoginActivity : AppCompatActivity() {
@@ -30,23 +32,37 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         setupAction()
     }
 
     private fun setupAction() {
+        getSession()
+        login()
         validationLayout()
         textSignup()
-        testLogin()
     }
 
-    private fun testLogin() {
+    private fun login() {
 
         binding.loginButton.setOnClickListener {
             val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
 
-            viewModel.login(email, password)
+            if (!binding.emailEditText.isValid()) {
+                return@setOnClickListener
+            }
+
+            if (!binding.passwordEditText.isValid()) {
+                return@setOnClickListener
+            }
+
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                viewModel.login(email, password)
+            } else {
+                val message = getString(R.string.loginError)
+                showToast(message)
+            }
+
         }
 
         viewModel.loginResult.observe(this ) { result ->
@@ -60,8 +76,8 @@ class LoginActivity : AppCompatActivity() {
                         val message = result.data.message
                         showToast(message)
                         showLoading(false)
-                        //saveSession(UserModel(result.data.loginResult.name,result.data.loginResult.token))
-                        //getSession()
+                        saveSession(UserModel(result.data.data!!.token))
+                        getSession()
 
                     }
                     is ResultState.Error -> {
@@ -70,10 +86,25 @@ class LoginActivity : AppCompatActivity() {
                         buttonLayout(true)
                         showAlertDialog(message)
                     }
+                    else -> {}
                 }
             }
         }
+    }
 
+    private fun getSession() {
+        viewModel.getSession().observe(this) {user ->
+            if (user.isLogin) {
+                val intent = Intent(this, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                finish()
+            }
+        }
+    }
+
+    private fun saveSession(user : UserModel) {
+        viewModel.saveSession(user)
     }
 
     private fun validationLayout() {
@@ -119,11 +150,12 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun showToast(message: String?) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
     private fun showLoading(isLoading: Boolean) {
         binding.progressIndicator.visibility = if (isLoading) View.VISIBLE else View.GONE
     }
 
-    private fun showToast(message: String?) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
 }

@@ -15,13 +15,18 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "da
 
 class UserPreference private constructor(private val dataStore : DataStore<Preferences>){
 
+    suspend fun deleteSession() {
+        dataStore.edit { preferences ->
+            preferences.clear()
+        }
+    }
+
     suspend fun saveSession (user : UserModel) {
         dataStore.edit { preferences ->
             preferences[TOKEN_USER_KEY] = user.token
             preferences[IS_LOGIN_KEY] = true
         }
     }
-
 
     fun getUser() : Flow<UserModel> {
         return dataStore.data.map { preferences ->

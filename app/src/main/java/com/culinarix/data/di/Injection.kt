@@ -14,8 +14,7 @@ object Injection {
         val pref = UserPreference.getInstance(context.dataStore)
         val user = runBlocking { pref.getUser().first()  }
         val apiService = ApiConfig.getApiService(user.token)
-        //val database = StoryDatabase.getInstance(context)
-        return CulinarixRepository.getInstance(apiService)
+        return CulinarixRepository.getInstance(apiService,pref)
     }
 
 }

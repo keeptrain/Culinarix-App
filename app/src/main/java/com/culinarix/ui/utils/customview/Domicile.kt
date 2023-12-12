@@ -11,9 +11,8 @@ import com.google.android.material.textfield.TextInputLayout
 
 class Domicile : MaterialAutoCompleteTextView {
 
-    private var domicileLayout : TextInputLayout? = null
-
-    private val validCities = setOf("Ambon" ,"Bandung","Jakarta","Jambi","Jember")
+    private var domicileLayout: TextInputLayout? = null
+    private val validCities = setOf("Ambon", "Bandung", "Jakarta", "Jambi", "Jember")
 
     constructor(context: Context) : super(context) {
         init()
@@ -26,7 +25,6 @@ class Domicile : MaterialAutoCompleteTextView {
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
         init()
     }
-
 
     private fun init() {
         val adapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, validCities.toTypedArray())
@@ -54,8 +52,11 @@ class Domicile : MaterialAutoCompleteTextView {
         }
     }
 
-    fun setDomicilieLayout(layout: TextInputLayout) {
-        domicileLayout = layout
+    fun isValid(): Boolean {
+        return domicileLayout?.error == null
     }
 
+    fun setDomicileLayout(layout: TextInputLayout) {
+        domicileLayout = layout
+    }
 }

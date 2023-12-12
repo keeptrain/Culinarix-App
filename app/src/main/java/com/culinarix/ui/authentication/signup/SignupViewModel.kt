@@ -22,4 +22,5 @@ class SignupViewModel (private val repository: CulinarixRepository) : ViewModel(
             }
         }
     }
+
 }
