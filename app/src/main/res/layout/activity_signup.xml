@@ -156,7 +156,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/intermedium"
             android:inputType="number"
-            android:maxLength="2" />
+            android:maxLength="2"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 

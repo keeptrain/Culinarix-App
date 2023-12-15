@@ -18,8 +18,15 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
-        val url: String = gradleLocalProperties(rootDir).getProperty("BASE_URL")
-        buildConfigField("String", "BASE_URL", url)
+        val urlAuth: String = gradleLocalProperties(rootDir).getProperty("BASE_URL_LOGIN")
+        buildConfigField("String", "BASE_URL_LOGIN", urlAuth)
+
+        val urlCollab: String = gradleLocalProperties(rootDir).getProperty("BASE_URL_COLLAB")
+        buildConfigField("String", "BASE_URL_COLLAB", urlCollab)
+
+        val urlContent: String = gradleLocalProperties(rootDir).getProperty("BASE_URL_CONTENT")
+        buildConfigField("String", "BASE_URL_CONTENT", urlContent)
+
     }
 
     buildFeatures {
@@ -69,4 +76,6 @@ dependencies {
 
     // Datastore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    implementation("com.github.bumptech.glide:glide:4.14.2")
 }

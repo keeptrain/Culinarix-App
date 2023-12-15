@@ -1,4 +1,4 @@
-package com.culinarix.data.api.response
+package com.culinarix.data.api.response.auth
 
 import com.google.gson.annotations.SerializedName
 

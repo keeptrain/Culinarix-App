@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.culinarix.data.CulinarixRepository
-import com.culinarix.data.api.response.LoginResponse
+import com.culinarix.data.api.response.auth.LoginResponse
 import com.culinarix.data.model.UserModel
 import com.culinarix.ui.utils.ResultState
 import kotlinx.coroutines.launch

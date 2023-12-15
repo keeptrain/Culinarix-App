@@ -8,6 +8,7 @@ import com.culinarix.data.di.Injection
 import com.culinarix.ui.authentication.login.LoginViewModel
 import com.culinarix.ui.authentication.signup.SignupViewModel
 import com.culinarix.ui.main.MainViewModel
+import com.culinarix.ui.main.profile.ProfileViewModel
 
 class ViewModelFactory (private val repository: CulinarixRepository): ViewModelProvider.NewInstanceFactory() {
 
@@ -23,6 +24,9 @@ class ViewModelFactory (private val repository: CulinarixRepository): ViewModelP
             }
             modelClass.isAssignableFrom(MainViewModel::class.java) -> {
                 MainViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(ProfileViewModel::class.java) -> {
+                ProfileViewModel(repository) as T
             }
 
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

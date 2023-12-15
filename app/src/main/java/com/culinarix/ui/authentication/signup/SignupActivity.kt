@@ -35,10 +35,11 @@ class SignupActivity : AppCompatActivity() {
     private fun signup() {
         binding.signupBtn.setOnClickListener {
             val name = binding.nameEdt.text.toString()
-            val email = binding.emailEdt.text.toString()
+            val email = binding.emailEdt.text.toString().trim()
             val password = binding.passwordEdt.text.toString()
+            val address = binding.domicileEdt.text.toString()
             val age = binding.ageEdt.text.toString()
-            val domicile = binding.domicileEdt.text.toString()
+
 
             if (!binding.nameEdt.isValid()) {
                 return@setOnClickListener
@@ -60,9 +61,8 @@ class SignupActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-
-            if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && age.isNotEmpty() && domicile.isNotEmpty()) {
-                viewModel.register(name, email, password, age.toInt(), domicile)
+            if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && age.isNotEmpty() && address.isNotEmpty()) {
+                viewModel.register(name, email, password,address,age.toInt() )
             } else {
                 val message = getString(R.string.signupError)
                 showAlertDialog(message)

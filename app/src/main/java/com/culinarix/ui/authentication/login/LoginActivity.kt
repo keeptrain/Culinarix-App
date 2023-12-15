@@ -52,9 +52,6 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if (!binding.passwordEditText.isValid()) {
-                return@setOnClickListener
-            }
 
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 viewModel.login(email, password)
@@ -76,7 +73,7 @@ class LoginActivity : AppCompatActivity() {
                         val message = result.data.message
                         showToast(message)
                         showLoading(false)
-                        saveSession(UserModel(result.data.data!!.token))
+                        saveSession(UserModel(result.data.data!!.userId,result.data.data.token))
                         getSession()
 
                     }
