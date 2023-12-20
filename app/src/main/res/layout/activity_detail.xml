@@ -60,7 +60,7 @@
             android:layout_marginTop="50dp"
             android:fontFamily="@font/intermedium"
             android:justificationMode="inter_word"
-            android:maxLines="4"
+            android:maxLines="3"
             android:text="@string/desc"
             android:textColor="@color/black"
             android:textSize="12sp" />
