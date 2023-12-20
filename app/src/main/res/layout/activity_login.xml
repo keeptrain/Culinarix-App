@@ -6,7 +6,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.authentication.login.LoginActivity">
+    tools:context=".ui.authentication.login.LoginActivity"
+    android:background="@color/white">
 
 
     <TextView
@@ -17,6 +18,7 @@
         android:layout_marginTop="160dp"
         android:fontFamily="@font/interblack"
         android:text="@string/welcome"
+        android:textColor="@color/black"
         android:textSize="40sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pls_signin"
+        android:textColor="@color/black"
         android:textSize="18sp"
         android:fontFamily="@font/intermedium"
         app:layout_constraintStart_toStartOf="@id/welcome"
@@ -66,6 +69,7 @@
             android:id="@+id/emailEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black"
             android:ems="10"
             android:fontFamily="@font/intermedium"
             android:inputType="textEmailAddress"
@@ -97,6 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="12"
+            android:textColor="@color/black"
             android:fontFamily="@font/intermedium"
             android:inputType="textPassword"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -131,6 +136,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/intermedium"
             android:text="@string/dontHaveAcc"
+            android:textColor="@color/black"
             android:textColorLink="@color/primaryColor"/>
 
     </LinearLayout>

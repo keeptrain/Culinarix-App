@@ -53,16 +53,17 @@
 
         <TextView
             android:id="@+id/tv_deskripsi"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10sp"
+            android:layout_marginEnd="20dp"
             android:layout_marginTop="50dp"
             android:fontFamily="@font/intermedium"
+            android:justificationMode="inter_word"
+            android:maxLines="4"
             android:text="@string/desc"
             android:textColor="@color/black"
-            android:textSize="12sp"
-            android:justificationMode="inter_word"
-            android:maxLines="4"/>
+            android:textSize="12sp" />
 
         <RatingBar
             android:id="@+id/ratingbar"

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.MainActivity">
+    tools:context=".ui.main.MainActivity"
+    android:background="@color/white">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cd_banner"
@@ -63,6 +64,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         app:queryHint="Search.."
+        android:textColor="@color/black"
         app:iconifiedByDefault="false"
         android:background="@drawable/bg_search"
         app:layout_constraintEnd_toEndOf="parent"
@@ -78,6 +80,7 @@
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/interextrabold"
         android:text="@string/recomends"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
