@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
@@ -13,17 +12,15 @@ import android.text.style.ClickableSpan
 import android.view.View
 import android.view.Window
 import android.widget.Button
-import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.culinarix.R
 import com.culinarix.data.model.UserModel
 import com.culinarix.databinding.ActivityLoginBinding
 import com.culinarix.ui.ViewModelFactory
 import com.culinarix.ui.authentication.signup.SignupActivity
-import com.culinarix.ui.main.MainActivity
 import com.culinarix.ui.main.contentbased.ContentBasedActivity
 import com.culinarix.ui.utils.ResultState
 
@@ -59,7 +56,6 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-
             if (email.isNotEmpty() && password.isNotEmpty()) {
                 viewModel.login(email, password)
             } else {
@@ -81,9 +77,6 @@ class LoginActivity : AppCompatActivity() {
                         saveSession(UserModel(result.data.data!!.userId,result.data.data.token))
                         dialogSukses(message)
                         showLoading(false)
-
-
-
                     }
                     is ResultState.Error -> {
                         dialogGagal()
@@ -96,17 +89,6 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
-//    private fun getSession() {
-//        viewModel.getSession().observe(this) {user ->
-//            if (user.isLogin) {
-//                val intent = Intent(this, ContentBasedActivity::class.java)
-//                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-//                startActivity(intent)
-//                finish()
-//            }
-//        }
-//    }
 
     private fun saveSession(user : UserModel) {
         viewModel.saveSession(user)
@@ -152,7 +134,7 @@ class LoginActivity : AppCompatActivity() {
         dialog.setContentView(R.layout.success_dialog)
 
         val next = dialog.findViewById<Button>(R.id.btn_success)
-        var message = dialog.findViewById<TextView>(R.id.success_message)
+        val message = dialog.findViewById<TextView>(R.id.success_message)
 
         message.text = msg
 

@@ -1,14 +1,9 @@
 package com.culinarix.ui.main.contentbased
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.widget.EditText
-import android.widget.Toast
 import androidx.activity.viewModels
-import com.culinarix.R
+import androidx.appcompat.app.AppCompatActivity
 import com.culinarix.databinding.ActivityContentBasedBinding
 import com.culinarix.ui.ViewModelFactory
 import com.culinarix.ui.authentication.login.LoginActivity
@@ -26,29 +21,32 @@ class ContentBasedActivity : AppCompatActivity() {
         binding = ActivityContentBasedBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var edtContent = binding.edtContentb.text
+        val edtContent = binding.edtContentb.text
 
         getSession()
 
         binding.btnNext.setOnClickListener {
-//            Toast.makeText(this,"$edtContent",Toast.LENGTH_SHORT).show()
-            val intent = Intent(this@ContentBasedActivity, MainActivity::class.java)
-            intent.putExtra(MainActivity.EXTRA_PLACE_NAME, edtContent.toString())
-            startActivity(intent)
 
+            if (edtContent != null) {
+                if (edtContent.isNotEmpty()){
+                    val intent = Intent(this@ContentBasedActivity, MainActivity::class.java)
+                    intent.putExtra(MainActivity.EXTRA_PLACE_NAME, edtContent.toString())
+                    startActivity(intent)
+                }
+            }
 
         }
+
 
         binding.btnSkip.setOnClickListener {
             startActivity(Intent(this@ContentBasedActivity, MainActivity::class.java))
         }
 
-
     }
 
     private fun getSession() {
         viewModel.getSession().observe(this) { data ->
-            if (data.isLogin == false) {
+            if (!data.isLogin) {
                 val intent = Intent(this, LoginActivity::class.java)
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)

@@ -12,7 +12,8 @@ import com.google.android.material.textfield.TextInputLayout
 class Domicile : MaterialAutoCompleteTextView {
 
     private var domicileLayout: TextInputLayout? = null
-    private val validCities = setOf("Ambon", "Bandung", "Jakarta", "Jambi", "Jember")
+    private var isValid: Boolean = false
+    //private val validCities = setOf("Ambon", "Bandung", "Jakarta", "Jambi", "Jember")
 
     constructor(context: Context) : super(context) {
         init()
@@ -27,15 +28,19 @@ class Domicile : MaterialAutoCompleteTextView {
     }
 
     private fun init() {
-        val adapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, validCities.toTypedArray())
-        setAdapter(adapter)
+        //val adapter = ArrayAdapter(context, android.R.layout.simple_list_item_1, validCities.toTypedArray())
+        //setAdapter(adapter)
 
         addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s != null) {
-                    validateDomicile(s.toString())
+                isValid = s?.isNotEmpty() == true && s.length >= 2
+
+                if (!isValid) {
+                    domicileLayout?.error = context.getString(R.string.domicilieError)
+                } else {
+                    domicileLayout?.error = null
                 }
             }
 
@@ -43,17 +48,8 @@ class Domicile : MaterialAutoCompleteTextView {
         })
     }
 
-    private fun validateDomicile(input: String) {
-        val isValid = validCities.contains(input.trim())
-        if (!isValid) {
-            domicileLayout?.error = context.getString(R.string.domicilieError)
-        } else {
-            domicileLayout?.error = null
-        }
-    }
-
     fun isValid(): Boolean {
-        return domicileLayout?.error == null
+        return isValid
     }
 
     fun setDomicileLayout(layout: TextInputLayout) {

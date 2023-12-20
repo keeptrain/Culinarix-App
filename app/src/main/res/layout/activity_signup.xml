@@ -193,7 +193,7 @@
             android:fontFamily="@font/intermedium"
             android:textColor="@color/black"
             android:imeOptions="actionDone"
-            android:inputType="textAutoComplete"
+            android:inputType="text"
             android:padding="10dp" />
 
     </com.google.android.material.textfield.TextInputLayout>

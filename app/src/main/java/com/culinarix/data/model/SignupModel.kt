@@ -1,7 +1,5 @@
 package com.culinarix.data.model
 
-import com.culinarix.ui.utils.customview.Domicile
-
 class SignupModel (
     val Name: String,
     val Email: String,
@@ -9,5 +7,4 @@ class SignupModel (
     val Address: String,
     val Age: Int,
 
-) {
-}
+)

@@ -79,7 +79,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
         android:fontFamily="@font/interextrabold"
-        android:text="@string/recomends"
+        android:text="@string/recommends"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"

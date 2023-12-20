@@ -4,14 +4,13 @@ import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.view.Window
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.culinarix.R
@@ -21,7 +20,6 @@ import com.culinarix.data.api.response.content.RecommendedContentPlacesItem
 import com.culinarix.data.api.response.content.TopRatedPlacesItem
 import com.culinarix.databinding.ActivityMainBinding
 import com.culinarix.ui.ViewModelFactory
-import com.culinarix.ui.authentication.login.LoginActivity
 import com.culinarix.ui.main.adapter.CollabAdapter
 import com.culinarix.ui.main.adapter.ContentAdapter
 import com.culinarix.ui.main.adapter.PlaceAdapter
@@ -49,9 +47,6 @@ class MainActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         binding.topRatedList.layoutManager = layoutManager
-
-//        val itemDecoration = DividerItemDecoration(this,layoutManager.orientation)
-//        binding.topRatedList.addItemDecoration(itemDecoration)
 
         dialogAds()
         setupAction()
@@ -82,7 +77,6 @@ class MainActivity : AppCompatActivity() {
     private fun setupAction() {
 
         placeName = intent.getStringExtra(EXTRA_PLACE_NAME)
-//        Toast.makeText(this@MainActivity, "$placeName", Toast.LENGTH_SHORT).show()
 
         if (placeName != null) {
             getContent(placeName.toString())
@@ -91,7 +85,6 @@ class MainActivity : AppCompatActivity() {
             viewModel.getUserId().observe(this) {
                 if (it != null) {
                     user_id = it.userId
-//                    Toast.makeText(this, "$user_id", Toast.LENGTH_SHORT).show()
 
                     if (user_id?.toInt()!! < 200) {
                         getCollab(user_id.toString())
@@ -112,7 +105,7 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     is ResultState.Success -> {
-                        binding.tvNameuser.text = "Hello ${it.data.name},"
+                        binding.tvNameuser.text = getString(R.string.helloUser, it.data.name)
                     }
 
                     is ResultState.Error -> {
@@ -121,21 +114,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-//        viewModel.getUserId().observe(this) {
-//            if (it != null) {
-//                user_id = it.userId
-//                Toast.makeText(this, "$user_id", Toast.LENGTH_SHORT).show()
-//
-//                if (user_id?.toInt()!! < 200) {
-//                    getCollab(user_id.toString())
-//
-//                } else {
-//                    getTopRatedCollab()
-//                }
-//
-//            }
-//        }
 
 
     }
@@ -163,7 +141,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun getCollab(user_id: String) {
+    private fun getCollab(user_id: String) {
         viewModel.getCollab(user_id).observe(this) { result ->
             if (result != null) {
                 when (result) {
@@ -189,7 +167,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun getContent(place_name: String) {
+    private fun getContent(place_name: String) {
         viewModel.getContent(place_name).observe(this) { result ->
             if (result != null) {
                 when (result) {
@@ -228,7 +206,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun searchContent(place_name: String) {
-        if (place_name.isNullOrBlank()) {
+        if (place_name.isBlank()) {
             setupAction()
 
         } else {
@@ -350,10 +328,10 @@ class MainActivity : AppCompatActivity() {
 
         val close = dialog.findViewById<ImageView >(R.id.btn_close)
 
-
         close.setOnClickListener {
             dialog.dismiss()
         }
+
         dialog.show()
 
     }

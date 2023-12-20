@@ -10,7 +10,6 @@ import android.view.Window
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.culinarix.R
 import com.culinarix.databinding.ActivitySignupBinding
@@ -71,11 +70,7 @@ class SignupActivity : AppCompatActivity() {
 
             if (name.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty() && age.isNotEmpty() && address.isNotEmpty()) {
                 viewModel.register(name, email, password,address,age.toInt() )
-            } else {
-                val message = getString(R.string.signupError)
-//                showAlertDialog(message)
             }
-
 
         }
 
@@ -94,9 +89,7 @@ class SignupActivity : AppCompatActivity() {
                     }
                     is ResultState.Error -> {
                         showLoading(false)
-                        val response = result.error.toString()
                         dialogGagal()
-
                     }
                 }
             }
@@ -124,17 +117,6 @@ class SignupActivity : AppCompatActivity() {
 
     }
 
-//    private fun showAlertDialog(errorMessage: String?) {
-//        AlertDialog.Builder(this).apply {
-//            setMessage(errorMessage)
-//            setPositiveButton("OK") { dialog , _ ->
-//                dialog.dismiss()
-//            }
-//            create()
-//            show()
-//        }
-//    }
-
     private fun dialogSukses(msg:String){
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -142,7 +124,7 @@ class SignupActivity : AppCompatActivity() {
         dialog.setContentView(R.layout.success_dialog)
 
         val next = dialog.findViewById<Button>(R.id.btn_success)
-        var message = dialog.findViewById<TextView>(R.id.success_message)
+        val message = dialog.findViewById<TextView>(R.id.success_message)
 
         message.text = msg
 

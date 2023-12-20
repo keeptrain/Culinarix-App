@@ -13,7 +13,7 @@ object Injection {
     fun provideRepository(context: Context) : CulinarixRepository {
         val pref = UserPreference.getInstance(context.dataStore)
         val user = runBlocking { pref.getUser().first()  }
-        val apiAuth = ApiConfig.getApiService(user.token)
+        val apiAuth = ApiConfig.getApiServiceAuth(user.token)
         val apiContent = ApiConfig.getApiServiceContent()
         val apiCollab = ApiConfig.getApiServiceCollab()
         return CulinarixRepository.getInstance(apiAuth,pref,apiContent, apiCollab)
