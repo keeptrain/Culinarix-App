@@ -9,6 +9,7 @@ import android.view.WindowInsets
 import android.view.WindowManager
 import com.culinarix.R
 import com.culinarix.ui.main.MainActivity
+import com.culinarix.ui.main.contentbased.ContentBasedActivity
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +20,7 @@ class SplashActivity : AppCompatActivity() {
 
         @Suppress("DEPRECATION")
         Handler().postDelayed({
-            val i = Intent(this@SplashActivity, MainActivity::class.java)
+            val i = Intent(this@SplashActivity, ContentBasedActivity::class.java)
             startActivity(i)
             finish()
         }, 4000)

@@ -11,5 +11,9 @@
     <color name="primaryColor">#2C6CEB</color>
     <color name="blueprimary">#2C6CEB</color>
     <color name="bluesecond">#7A9ADC</color>
+    <color name="darkblue">#214897</color>
+    <color name="grey">#6C6C6C</color>
+    <color name="light_grey">#E1E1E1</color>
+    <color name="light_greyy">#F7F7F7</color>
 
 </resources>

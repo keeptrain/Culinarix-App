@@ -9,11 +9,18 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.culinarix.data.api.response.content.RecommendedContentPlacesItem
 import com.culinarix.data.api.response.content.TopRatedPlacesItem
 import com.culinarix.databinding.TopRatedItemBinding
 import com.culinarix.ui.main.detail.DetailActivity
 
 class PlaceAdapter: ListAdapter<TopRatedPlacesItem, PlaceAdapter.MyViewHolder>(DIFF_CALLBACK.DIFF_CALLBACK) {
+
+    private lateinit var onItemClickAdapter : OnItemClickAdapter
+
+    fun setItemClickAdapter(onItemClickAdapter : OnItemClickAdapter){
+        this.onItemClickAdapter = onItemClickAdapter
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlaceAdapter.MyViewHolder {
         val binding = TopRatedItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -22,10 +29,14 @@ class PlaceAdapter: ListAdapter<TopRatedPlacesItem, PlaceAdapter.MyViewHolder>(D
 
     override fun onBindViewHolder(holder: PlaceAdapter.MyViewHolder, position: Int) {
         val data = getItem(position)
+        holder.binding.btnTodetail.setOnClickListener {
+            onItemClickAdapter.onItemClick(data)
+
+        }
         holder.bind(data)
     }
 
-    inner class MyViewHolder(private val binding: TopRatedItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class MyViewHolder(val binding: TopRatedItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(data: TopRatedPlacesItem) {
             binding.apply {
                 Glide.with(itemView.context)
@@ -33,22 +44,15 @@ class PlaceAdapter: ListAdapter<TopRatedPlacesItem, PlaceAdapter.MyViewHolder>(D
                     .into(ivStory)
                 tvName.text = data.placeName
                 tvDescription.text = data.description
+                tvCategory.text = data.category
+                tvRating.text = data.culinaryRatings.toString()
+                ratingbarMain.rating = data.culinaryRatings?.toFloat()!!
             }
-
-            /*itemView.setOnClickListener{
-                val intent = Intent(itemView.context, DetailActivity::class.java)
-                intent.putExtra("Story", story)
-
-                val optionsCompat: ActivityOptionsCompat =
-                    ActivityOptionsCompat.makeSceneTransitionAnimation(
-                        itemView.context as Activity,
-                        Pair(binding.ivStory,"photo"),
-                        Pair(binding.tvName,"name"),
-                        Pair(binding.tvDescription,"description")
-                    )
-                itemView.context.startActivity(intent, optionsCompat.toBundle())
-            }*/
         }
+    }
+
+    interface OnItemClickAdapter{
+        fun onItemClick(datta: TopRatedPlacesItem)
     }
 
     companion object DIFF_CALLBACK {

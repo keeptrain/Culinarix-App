@@ -1,5 +1,6 @@
 package com.culinarix.ui.main.profile
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -7,6 +8,7 @@ import com.culinarix.R
 import com.culinarix.databinding.ActivityMainBinding
 import com.culinarix.databinding.ActivityProfileBinding
 import com.culinarix.ui.ViewModelFactory
+import com.culinarix.ui.authentication.login.LoginActivity
 import com.culinarix.ui.authentication.login.LoginViewModel
 import com.culinarix.ui.utils.ResultState
 
@@ -31,8 +33,10 @@ class ProfileActivity : AppCompatActivity() {
 
                     is ResultState.Success -> {
                         val data = result.data
-                        binding.name.text = data.email
-                        binding.email.text = data.name
+                        binding.tvNameprofile.text = data.name
+                        binding.tvAddressprofile.text = data.address
+                        binding.tvAgeprofile.text = "${data.age} tahun"
+                        binding.tvEmailprofile.text = data.email
 
                     }
 
@@ -46,5 +50,18 @@ class ProfileActivity : AppCompatActivity() {
             }
         }
 
+        logout()
+
+
+    }
+
+    private fun logout() {
+        binding.testLogout.setOnClickListener {
+            viewModel.deleteSession()
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            finish()
+        }
     }
 }

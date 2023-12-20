@@ -1,13 +1,21 @@
 package com.culinarix.ui.authentication.signup
 
+import android.app.Dialog
+import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
+import android.view.Window
+import android.widget.Button
+import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.culinarix.R
 import com.culinarix.databinding.ActivitySignupBinding
 import com.culinarix.ui.ViewModelFactory
+import com.culinarix.ui.authentication.login.LoginActivity
 import com.culinarix.ui.utils.ResultState
 
 class SignupActivity : AppCompatActivity() {
@@ -65,7 +73,7 @@ class SignupActivity : AppCompatActivity() {
                 viewModel.register(name, email, password,address,age.toInt() )
             } else {
                 val message = getString(R.string.signupError)
-                showAlertDialog(message)
+//                showAlertDialog(message)
             }
 
 
@@ -80,13 +88,15 @@ class SignupActivity : AppCompatActivity() {
                     is ResultState.Success -> {
                         showLoading(false)
                         val response = result.data.message
-                        showAlertDialog(response)
+                        dialogSukses(response)
+
 
                     }
                     is ResultState.Error -> {
                         showLoading(false)
-                        val response = result.error
-                        showAlertDialog(response)
+                        val response = result.error.toString()
+                        dialogGagal()
+
                     }
                 }
             }
@@ -114,15 +124,49 @@ class SignupActivity : AppCompatActivity() {
 
     }
 
-    private fun showAlertDialog(errorMessage: String?) {
-        AlertDialog.Builder(this).apply {
-            setMessage(errorMessage)
-            setPositiveButton("OK") { dialog , _ ->
-                dialog.dismiss()
-            }
-            create()
-            show()
+//    private fun showAlertDialog(errorMessage: String?) {
+//        AlertDialog.Builder(this).apply {
+//            setMessage(errorMessage)
+//            setPositiveButton("OK") { dialog , _ ->
+//                dialog.dismiss()
+//            }
+//            create()
+//            show()
+//        }
+//    }
+
+    private fun dialogSukses(msg:String){
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(R.layout.success_dialog)
+
+        val next = dialog.findViewById<Button>(R.id.btn_success)
+        var message = dialog.findViewById<TextView>(R.id.success_message)
+
+        message.text = msg
+
+        next.setOnClickListener {
+            startActivity(Intent(this@SignupActivity,LoginActivity::class.java))
         }
+
+        dialog.show()
+    }
+
+    private fun dialogGagal(){
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(R.layout.failedd_dialog)
+
+        val close = dialog.findViewById<Button>(R.id.btn_failed)
+
+
+        close.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+
     }
 
     private fun showLoading(isLoading: Boolean) {

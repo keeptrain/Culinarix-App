@@ -77,5 +77,9 @@ dependencies {
     // Datastore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
 
+    //glide
     implementation("com.github.bumptech.glide:glide:4.14.2")
+
+    //lottie
+    implementation ("com.airbnb.android:lottie:6.2.0")
 }

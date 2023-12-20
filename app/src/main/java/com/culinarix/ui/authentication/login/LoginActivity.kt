@@ -1,6 +1,9 @@
 package com.culinarix.ui.authentication.login
 
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.SpannableString
@@ -8,6 +11,10 @@ import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.view.View
+import android.view.Window
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
@@ -17,6 +24,7 @@ import com.culinarix.databinding.ActivityLoginBinding
 import com.culinarix.ui.ViewModelFactory
 import com.culinarix.ui.authentication.signup.SignupActivity
 import com.culinarix.ui.main.MainActivity
+import com.culinarix.ui.main.contentbased.ContentBasedActivity
 import com.culinarix.ui.utils.ResultState
 
 class LoginActivity : AppCompatActivity() {
@@ -36,7 +44,6 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun setupAction() {
-        getSession()
         login()
         validationLayout()
         textSignup()
@@ -70,34 +77,36 @@ class LoginActivity : AppCompatActivity() {
                         buttonLayout(false)
                     }
                     is ResultState.Success -> {
-                        val message = result.data.message
-                        showToast(message)
-                        showLoading(false)
+                        val message = result.data.message.toString()
                         saveSession(UserModel(result.data.data!!.userId,result.data.data.token))
-                        getSession()
+                        dialogSukses(message)
+                        showLoading(false)
+
+
 
                     }
                     is ResultState.Error -> {
-                        val message = result.error
+                        dialogGagal()
                         showLoading(false)
                         buttonLayout(true)
-                        showAlertDialog(message)
+
                     }
+
                 }
             }
         }
     }
 
-    private fun getSession() {
-        viewModel.getSession().observe(this) {user ->
-            if (user.isLogin) {
-                val intent = Intent(this, MainActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
-                finish()
-            }
-        }
-    }
+//    private fun getSession() {
+//        viewModel.getSession().observe(this) {user ->
+//            if (user.isLogin) {
+//                val intent = Intent(this, ContentBasedActivity::class.java)
+//                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+//                startActivity(intent)
+//                finish()
+//            }
+//        }
+//    }
 
     private fun saveSession(user : UserModel) {
         viewModel.saveSession(user)
@@ -135,15 +144,42 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
-    private fun showAlertDialog(errorMessage: String?) {
-        AlertDialog.Builder(this).apply {
-            setMessage(errorMessage)
-            setPositiveButton("OK") { dialog , _ ->
-                dialog.dismiss()
-            }
-            create()
-            show()
+
+    private fun dialogSukses(msg:String){
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(R.layout.success_dialog)
+
+        val next = dialog.findViewById<Button>(R.id.btn_success)
+        var message = dialog.findViewById<TextView>(R.id.success_message)
+
+        message.text = msg
+
+        next.setOnClickListener {
+            val intent = Intent(this, ContentBasedActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+            finish()
         }
+
+        dialog.show()
+    }
+
+    private fun dialogGagal(){
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(R.layout.failed_dialog)
+
+        val close = dialog.findViewById<Button>(R.id.btn_failed)
+
+
+        close.setOnClickListener {
+            dialog.dismiss()
+        }
+        dialog.show()
+
     }
 
     private fun showToast(message: String?) {

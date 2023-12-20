@@ -34,5 +34,18 @@
     <string name="tempatmakan">Tempat Makan</string>
     <string name="alamat">Jl.Tempat - Makan</string>
 
+    <!-- Content Based Page -->
+    <string name="contentbased">What was your last culinary visit to Bandung?</string>
+    <string name="desc">description</string>
+    <string name="banner">What do you want to eat today in Bandung?</string>
+    <string name="recomends">Recomends</string>
+
+    <string name="profile">Profile</string>
+    <string name="success">Success</string>
+    <string name="failed">Failed</string>
+    <string name="failedmsg">User not found</string>
+    <string name="failedmsgg">Email has been registered </string>
+
+
 
 </resources>

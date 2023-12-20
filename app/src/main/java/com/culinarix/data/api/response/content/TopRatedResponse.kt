@@ -38,14 +38,14 @@ data class TopRatedPlacesItem(
 	val coordinate: String? = null,
 
 	@field:SerializedName("Culinary_Ratings")
-	val culinaryRatings: Int? = null,
+	val culinaryRatings: Double? = null,
 
 	@field:SerializedName("Place_Name")
 	val placeName: String? = null,
 
 	@field:SerializedName("Long")
-	val long: Any? = null,
+	val long: Double? = null,
 
 	@field:SerializedName("Lat")
-	val lat: Any? = null
+	val lat: Double? = null
 )

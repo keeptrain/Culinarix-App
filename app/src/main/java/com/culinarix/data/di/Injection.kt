@@ -15,7 +15,8 @@ object Injection {
         val user = runBlocking { pref.getUser().first()  }
         val apiAuth = ApiConfig.getApiService(user.token)
         val apiContent = ApiConfig.getApiServiceContent()
-        return CulinarixRepository.getInstance(apiAuth,pref,apiContent)
+        val apiCollab = ApiConfig.getApiServiceCollab()
+        return CulinarixRepository.getInstance(apiAuth,pref,apiContent, apiCollab)
     }
 
 }
